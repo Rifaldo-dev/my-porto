@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet">
+    <title>M. Rifaldo Saputra</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        .header {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .nav__toggle {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .nav__list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+        .nav__list li {
+            margin: 0 15px;
+        }
+        .nav__list a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav__list a:hover {
+            color: #ff6347;
+        }
+        .section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .section img:hover {
+            transform: scale(1.05);
+        }
+        .about__img, .education__img, .certificate__img, .project__img {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        .education__data, .work__container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .education__data > div, .work__container > a {
+            margin: 10px;
+            text-align: center;
+            max-width: 200px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .education__data > div:hover, .work__container > a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .contact__form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .contact__input, .contact__button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .contact__button {
+            background-color: #222;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .contact__button:hover {
+            background-color: #ff6347;
+        }
+        .footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .lightbox-title {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-view-all {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-view-all:hover {
+            background-color: #ff6347;
+        }
+        @media (max-width: 768px) {
+            .nav__list {
+                flex-direction: column;
+                align-items: center;
+                display: none;
+                width: 100%;
+                background-color: #222;
+                position: absolute;
+                top: 50px;
+                left: 0;
+            }
+            .nav__list li {
+                margin: 10px 0;
+            }
+            .nav__list.show {
+                display: flex;
+            }
+            .nav__toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>M. Rifaldo Saputra</h1>
+        <i class="bx bx-menu nav__toggle" onclick="toggleMenu()"></i>
+        <nav>
+            <ul class="nav__list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certificate">Certificate</a></li>
+                <li><a href="#project">Project</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section" id="home">
+        <h2 class="section-title">Welcome</h2>
+        <p>Hi, I'm M. Rifaldo Saputra, an IT support specialist.</p>
+        <img src="https://telegra.ph/file/b73fdf7e10ac5d797332c.jpg" alt="M. Rifaldo Saputra" class="img-clickable">
+    </section>
+
+    <section class="section" id="about">
+        <h2 class="section-title">About</h2>
+        <p>IT support specialist with experience in troubleshooting hardware, software, and network issues.</p>
+    </section>
+
+    <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education__data">
+            <div>
+                <h3>SMKN 1 Kinali </h3>
+                <p> 2021 - 2024 </p>
+            </div>
+            
+            <div>
+                <h3>SMPN 1  Luhak Nan Duo</h3>
+                <p>2018 - 2021 </p>
+            </div>
+       
+        <div>
+                <h3>SDN 05 Luhak Nan duo </h3>
+                <p>2015 - 2018 </p>
+            </div>
+        
+        <div>
+                <h3>SDN 07 Pasaman</h3>
+                <p>2012 - 2015 </p>
+            </div>
+        
+        <div>
+                <h3>TK Masyitoh III </h3>
+                <p>2011 - 2012 </p>
+            
+        </div>
+    </section>
+
+    <section class="section" id="certificate">
+        <h2 class="section-title">Certificate</h2>
+        <div class="work__container">
+            <a href="#" onclick="openLightbox('Certificate 1', 'https://telegra.ph/file/9c04afcd83f5dc22049af.jpg')">
+                <img src="https://telegra.ph/file/9c04afcd83f5dc22049af.jpg" alt="Certificate 1" class="certificate__img img-clickable">
+            </a>
+            <a href="#" onclick="openLightbox('Certificate 2', 'https://telegra.ph/file/5cd3075a8577333aeb6d6.jpg')">
+                <img src="https://telegra.ph/file/5cd3075a8577333aeb6d6.jpg" alt="Certificate 2" class="certificate__img img-clickable">
+            </a>
+            <a href="#" onclick="openLightbox('Certificate 3', 'https://telegra.ph/file/65a50537f0f9fab3e84db.jpg')">
+                <img src="https://telegra.ph/file/65a50537f0f9fab3e84db.jpg" alt="Certificate 3" class="certificate__img img-clickable">
+            </a>
+            <a href="#" onclick="openLightbox('Certificate 3', 'https://telegra.ph/file/65a50537f0f9fab3e84db.jpg')">
+                <img src="https://telegra.ph/file/65a50537f0f9fab3e84db.jpg" alt="Certificate 3" class="certificate__img img-clickable">
+            </a>
+        </div>
+        <a href="#" class="btn-view-all">View All Certificates</a>
+    </section>
+
+    <section class="section" id="project">
+        <h2 class="section-title">Project</h2>
+        <div class="work__container">
+            <a href="#" onclick="openLightbox('Project 1', 'https://telegra.ph/file/65a50537f0f9fab3e84db.jpg')">
+                <img src="https://telegra.ph/file/65a50537f0f9fab3e84db.jpg" alt="Project 1" class="project__img img-clickable">
+            </a>
+            <a href="#" onclick="openLightbox('Project 2', 'https://telegra.ph/file/65a50537f0f9fab3e84db.jpg')">
+                <img src="https://telegra.ph/file/65a50537f0f9fab3e84db.jpg" alt="Project 2" class="project__img img-clickable">
+            </a>
+            <a href="#" onclick="openLightbox('Project 3', 'https://telegra.ph/file/65a50537f0f9fab3e84db.jpg')">
+                <img src="https://telegra.ph/file/65a50537f0f9fab3e84db.jpg" alt="Project 3" class="project__img img-clickable">
+            </a>
+        </div>
+        <a href="#" class="btn-view-all">View All Projects</a>
+    </section>
+
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <form action="" class="contact__form">
+            <input type="text" placeholder="Name" class="contact__input" required>
+            <input type="email" placeholder="Email" class="contact__input" required>
+            <textarea placeholder="Message" class="contact__input" required></textarea>
+            <button type="submit" class="contact__button">Send</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 M. Rifaldo Saputra. All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <h1 id="lightbox-title" class="lightbox-title"></h1>
+        <img id="lightbox-img" class="lightbox-content">
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navList = document.querySelector('.nav__list');
+            navList.classList.toggle('show');
+        }
+
+        function openLightbox(title, src) {
+            document.getElementById('lightbox-title').innerText = title;
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
